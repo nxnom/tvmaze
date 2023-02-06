@@ -6,6 +6,17 @@
   font-weight: 400;
 }
 
+body {
+  --color-highlight: rgb(49, 45, 44);
+  --color-text: rgb(71, 70, 69);
+  --color-light-grey: rgb(231, 228, 227);
+  --color-light: rgb(251, 248, 247);
+  --color-white: rgb(255, 255, 255);
+  --shadow: 0.25rem 0.25rem 1rem rgba(0, 0, 0, 0.15);
+
+  color: var(--color-light);
+}
+
 ul {
   margin: 0;
   padding: 0;
@@ -14,6 +25,7 @@ ul {
 
 a {
   text-decoration: none;
+  color: inherit;
 }
 
 .container {
@@ -53,6 +65,15 @@ a {
 
 .flex-wrap {
   flex-wrap: wrap;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.826);
+  backdrop-filter: blur(5px);
 }
 
 .links {
