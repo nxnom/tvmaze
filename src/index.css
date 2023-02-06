@@ -10,7 +10,7 @@
 
 body {
   --color-dark: rgb(14, 14, 14);
-  --color-highlight: rgb(49, 45, 44);
+  --color-dark-grey: rgb(49, 45, 44);
   --color-text: rgb(71, 70, 69);
   --color-light-grey: rgb(231, 228, 227);
   --color-light: rgb(251, 248, 247);
@@ -134,6 +134,7 @@ a {
 
 .maze {
   padding-top: 5rem;
+  padding-bottom: 5rem;
 }
 
 .maze__grid {
@@ -151,7 +152,7 @@ a {
 
 .card__text {
   position: absolute;
-  top: 25rem;
+  top: 24rem;
   left: 0;
   bottom: 0;
   width: 100%;
@@ -194,4 +195,9 @@ a {
 .card__btn:active {
   color: var(--color-dark);
   background-color: var(--color-light);
+}
+
+.footer {
+  text-align: center;
+  border-top: solid 2px var(--color-dark-grey);
 }
