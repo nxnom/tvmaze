@@ -81,6 +81,20 @@ a {
   z-index: 1000;
 }
 
+.logo {
+  padding: 0.25rem 0.5rem;
+  border: solid 1px currentColor;
+  border-radius: 5rem;
+}
+
+.logo a {
+  display: inline-block;
+  height: 2rem;
+  width: 7.5rem;
+  background-image: url('../images/logo.png');
+  background-repeat: no-repeat;
+}
+
 .links {
   gap: 2rem;
 }

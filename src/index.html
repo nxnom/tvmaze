@@ -19,9 +19,9 @@
     <header class="header">
       <div class="container padding">
         <nav class="nav flex flex-jc-sb flex-ai-c">
-          <a href="#" class="logo">
-            <img src="../images/tvmaze-logo-dark.svg" alt="logo" />
-          </a>
+          <span class="logo">
+            <a href="#"> </a>
+          </span>
 
           <ul class="links flex">
             <li><a href="#" class="link">TV Shows</a></li>
@@ -45,29 +45,7 @@
 
       <section class="maze section">
         <div class="container">
-          <ul class="maze__grid flex flex-jc-c flex-wrap">
-            <img src="${show.image.original}" alt="Card image" class="card__image" />
-
-            <div class="card__text padding flex">
-              <h2 class="card__title">${show.name}</h2>
-
-              <div class="card__counts">
-                <span class="card__like-count"></span>
-                <span class="card__comment-count"></span>
-              </div>
-
-              <div class="card__btns flex flex-ai-c">
-                <button class="like__btn card__btn">
-                  <span class="material-symbols-outlined"> favorite </span>
-                  <span>Like</span>
-                </button>
-                <button class="comment__btn card__btn">
-                  <span class="material-symbols-outlined"> comment </span>
-                  <span>Comment</span>
-                </button>
-              </div>
-            </div>
-          </ul>
+          <ul class="maze__grid flex flex-jc-c flex-wrap"></ul>
         </div>
       </section>
     </main>
