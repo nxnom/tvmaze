@@ -4,16 +4,57 @@
   margin: 0;
 }
 
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.container {
+  max-width: 80em;
+  margin: auto;
+}
+
+.padding {
+  padding: 1rem;
+}
+
+.padding-b {
+  padding-bottom: 1rem;
+}
+
+@media (min-width: 40em) {
+  .padding {
+    padding: 2rem;
+  }
+}
+
 .flex {
   display: flex;
+}
+
+.flex-jc-c {
+  justify-content: center;
+}
+
+.flex-jc-sb {
+  justify-content: space-between;
+}
+
+.flex-ai-c {
+  align-items: center;
 }
 
 .flex-wrap {
   flex-wrap: wrap;
 }
 
-.flex-jc-c {
-  justify-content: center;
+.links {
+  gap: 2rem;
 }
 
 .maze__grid {
