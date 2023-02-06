@@ -1,4 +1,6 @@
-* {
+*,
+*::before,
+::after {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
@@ -7,6 +9,7 @@
 }
 
 body {
+  --color-dark: rgb(19, 19, 19);
   --color-highlight: rgb(49, 45, 44);
   --color-text: rgb(71, 70, 69);
   --color-light-grey: rgb(231, 228, 227);
@@ -15,6 +18,7 @@ body {
   --shadow: 0.25rem 0.25rem 1rem rgba(0, 0, 0, 0.15);
 
   color: var(--color-light);
+  background-color: var(--color-dark);
 }
 
 ul {
@@ -72,12 +76,36 @@ a {
   top: 0;
   left: 0;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.826);
+  background-color: rgba(0, 0, 0, 0.573);
   backdrop-filter: blur(5px);
+  z-index: 1000;
 }
 
 .links {
   gap: 2rem;
+}
+
+.hero {
+  padding-top: 3rem;
+  position: relative;
+  height: 70vh;
+  background-image: url('../images/assortment-cinema-elements-red-background-with-copy-space.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.687);
+}
+
+.hero .container {
+  position: relative;
+  flex-direction: column;
+  height: 100%;
 }
 
 .maze__grid {
