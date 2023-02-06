@@ -1,5 +1,2 @@
 import './index.css';
-
-const add = (a, b) => a + b;
-
-export default add;
+import { getShows } from './modules/renderToDOM.js';
