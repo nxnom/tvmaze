@@ -1,2 +1,4 @@
 import './index.css';
-import { getShows } from './modules/renderToDOM.js';
+import { getShows, renderShowsToDOM } from './modules/renderToDOM.js';
+
+renderShowsToDOM(getShows);
