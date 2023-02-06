@@ -8,21 +8,55 @@
   <body>
     <header class="header">
       <div class="container">
-        <nav class="header__nav">
-          <a href="#" class="header__logo">
+        <nav class="nav flex flex-jc-sb flex-ai-c">
+          <a href="#" class="logo">
             <img src="../images/tvmaze-logo-dark.svg" alt="logo" />
           </a>
 
-          <ul class="header__links">
-            <li class="header__link">TV Shows</li>
-            <li class="header__link">Action</li>
-            <li class="header__link">Fantacy</li>
+          <ul class="links flex">
+            <li><a href="#" class="link">TV Shows</a></li>
+            <li><a href="#" class="link">Action</a></li>
+            <li><a href="#" class="link">Fantasy</a></li>
           </ul>
         </nav>
       </div>
     </header>
 
-    <main class="main"></main>
+    <main class="main">
+      <section class="hero section">
+        <div class="container">
+          <h1 class="hero__title">Tvmaze</h1>
+          <p class="hero__description">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolor possimus nostrum quaerat nam earum aliquid
+            ad esse voluptatibus natus soluta.
+          </p>
+        </div>
+      </section>
+
+      <section class="maze section">
+        <div class="container">
+          <ul class="maze__grid">
+            <li class="maze__card">
+              <img src="../images/popcorn-juice-movie-night.jpg" alt="Card image" class="card__image" />
+
+              <div class="card__text">
+                <h2 class="card__title">TV show 1</h2>
+
+                <div class="card__counts">
+                  <span class="card__like-count"></span>
+                  <span class="card__comment-count"></span>
+                </div>
+
+                <div class="card__btns">
+                  <button class="like__btn"></button>
+                  <button class="comment__btn"></button>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+    </main>
     <footer class="footer">© 2022 - Created by Miles and Wai under MIT License</footer>
   </body>
 </html>
