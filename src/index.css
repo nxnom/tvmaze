@@ -99,13 +99,27 @@ a {
   content: '';
   position: absolute;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.687);
+  background: linear-gradient(5deg, var(--color-dark), rgba(0, 0, 0, 0.425));
 }
 
 .hero .container {
   position: relative;
   flex-direction: column;
   height: 100%;
+}
+
+.hero__title {
+  font-size: 4rem;
+  font-weight: 900;
+  margin-bottom: 1rem;
+}
+
+.hero__description {
+  max-width: 600px;
+}
+
+.maze {
+  padding-top: 5rem;
 }
 
 .maze__grid {
