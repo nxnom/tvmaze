@@ -3,6 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -41,7 +45,29 @@
 
       <section class="maze section">
         <div class="container">
-          <ul class="maze__grid flex flex-jc-c flex-wrap"></ul>
+          <ul class="maze__grid flex flex-jc-c flex-wrap">
+            <img src="${show.image.original}" alt="Card image" class="card__image" />
+
+            <div class="card__text padding flex">
+              <h2 class="card__title">${show.name}</h2>
+
+              <div class="card__counts">
+                <span class="card__like-count"></span>
+                <span class="card__comment-count"></span>
+              </div>
+
+              <div class="card__btns flex flex-ai-c">
+                <button class="like__btn card__btn">
+                  <span class="material-symbols-outlined"> favorite </span>
+                  <span>Like</span>
+                </button>
+                <button class="comment__btn card__btn">
+                  <span class="material-symbols-outlined"> comment </span>
+                  <span>Comment</span>
+                </button>
+              </div>
+            </div>
+          </ul>
         </div>
       </section>
     </main>

@@ -26,7 +26,7 @@ export const renderShowsToDOM = async () => {
     card.innerHTML = `
       <img src="${show.image.original}" alt="Card image" class="card__image" />
 
-      <div class="card__text">
+      <div class="card__text padding flex">
         <h2 class="card__title">${show.name}</h2>
 
         <div class="card__counts">
@@ -34,9 +34,15 @@ export const renderShowsToDOM = async () => {
           <span class="card__comment-count"></span>
         </div>
 
-        <div class="card__btns">
-          <button class="like__btn">Like</button>
-          <button class="comment__btn">Comment</button>
+        <div class="card__btns flex flex-ai-c">
+          <button class="like__btn card__btn flex flex-ai-c">
+            <span class="material-symbols-outlined"> favorite </span>
+            <span>Like</span>
+          </button>
+          <button class="comment__btn card__btn flex flex-ai-c">
+            <span class="material-symbols-outlined"> comment </span>
+            <span>Comment</span>
+          </button>
         </div>
       </div>
     `;

@@ -9,7 +9,7 @@
 }
 
 body {
-  --color-dark: rgb(19, 19, 19);
+  --color-dark: rgb(14, 14, 14);
   --color-highlight: rgb(49, 45, 44);
   --color-text: rgb(71, 70, 69);
   --color-light-grey: rgb(231, 228, 227);
@@ -127,9 +127,57 @@ a {
 }
 
 .maze__card {
+  position: relative;
   max-width: 400px;
 }
 
 .card__image {
   width: 100%;
+}
+
+.card__text {
+  position: absolute;
+  top: 25rem;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding-bottom: 4rem;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  background-color: rgba(0, 0, 0, 0.8);
+  transition: top 300ms ease-in-out;
+}
+
+.maze__card:hover .card__text {
+  top: 0;
+}
+
+.card__title {
+  border-bottom: solid 2px var(--color-light-grey);
+  padding-bottom: 0.5rem;
+}
+
+.card__btns {
+  gap: 2rem;
+}
+
+.card__btn {
+  padding: 0.5rem 1rem;
+  border-radius: 5rem;
+  color: inherit;
+  border: solid 2px currentColor;
+  background-color: transparent;
+  cursor: pointer;
+  gap: 0.5rem;
+  transition: background-color 150ms ease-in-out, color 150ms ease-in-out;
+}
+
+.card__btn:hover {
+  background-color: rgba(251, 248, 247, 0.25);
+}
+
+.card__btn:active {
+  color: var(--color-dark);
+  background-color: var(--color-light);
 }
