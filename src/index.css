@@ -3,3 +3,27 @@
   padding: 0;
   margin: 0;
 }
+
+.flex {
+  display: flex;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.flex-jc-c {
+  justify-content: center;
+}
+
+.maze__grid {
+  gap: 1rem;
+}
+
+.maze__card {
+  max-width: 400px;
+}
+
+.card__image {
+  width: 100%;
+}
