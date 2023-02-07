@@ -56,7 +56,6 @@ export const renderShowsToDOM = async () => {
 
         <div class="card__counts">
           <span class="card__like-count">${likeCount}</span>
-          <span class="card__comment-count"></span>
         </div>
 
         <div class="card__btns flex flex-ai-c">
