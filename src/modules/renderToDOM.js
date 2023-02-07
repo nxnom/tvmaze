@@ -23,6 +23,23 @@ export const getLikes = async () => {
   }
 };
 
+export const renderLikesToDOM = (likesArr, show) => {
+  let likeText = 'likes';
+  let likeCount = `0 ${likeText}`;
+
+  likesArr.forEach((obj) => {
+    if (obj.likes.toString() === '1') {
+      likeText = 'like';
+    }
+
+    if (obj.item_id === show.id) {
+      likeCount = `${obj.likes} ${likeText}`;
+    }
+  });
+
+  return likeCount;
+};
+
 export const renderShowsToDOM = async () => {
   const showList = document.querySelector('.maze__grid');
   showList.innerHTML = '';
@@ -31,19 +48,6 @@ export const renderShowsToDOM = async () => {
   const likesArr = await getLikes();
 
   shows.forEach((show) => {
-    let likeText = 'likes';
-    let likeCount = `0 ${likeText}`;
-
-    likesArr.forEach((obj) => {
-      if (obj.likes.toString() === '1') {
-        likeText = 'like';
-      }
-
-      if (obj.item_id === show.id) {
-        likeCount = `${obj.likes} ${likeText}`;
-      }
-    });
-
     const card = document.createElement('ul');
     card.className = 'maze__card';
     card.id = show.id;
@@ -55,7 +59,7 @@ export const renderShowsToDOM = async () => {
         <h2 class="card__title">${show.name}</h2>
 
         <div class="card__counts">
-          <span class="card__like-count">${likeCount}</span>
+          <span class="card__like-count">${renderLikesToDOM(likesArr, show)}</span>
         </div>
 
         <div class="card__btns flex flex-ai-c">
