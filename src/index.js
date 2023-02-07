@@ -1,6 +1,6 @@
 import './index.css';
 import './popup.css';
-import { renderShowsToDOM } from './modules/renderToDOM.js';
+import { renderShowsToDOM, renderLikesToDOM } from './modules/renderToDOM.js';
 
 const showsContainer = document.querySelector('.maze__grid');
 
@@ -11,3 +11,4 @@ showsContainer.addEventListener('click', (e) => {
 });
 
 renderShowsToDOM();
+renderLikesToDOM();
