@@ -11,7 +11,7 @@ export const getShows = async () => {
   return arr;
 };
 
-export const renderLikesToDOM = async () => {
+export const getLikes = async () => {
   try {
     const response = await fetch(`${INVOLVEMENT_API_URL}apps/${appID}/likes/`);
 
@@ -28,7 +28,7 @@ export const renderShowsToDOM = async () => {
   showList.innerHTML = '';
 
   const shows = await getShows();
-  const likesArr = await renderLikesToDOM();
+  const likesArr = await getLikes();
 
   shows.forEach((show) => {
     let likeText = 'likes';
