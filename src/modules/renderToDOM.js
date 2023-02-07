@@ -3,7 +3,9 @@ const url = 'https://api.tvmaze.com/shows';
 export const getShows = async () => {
   const response = await fetch(`${url}`);
 
-  if (!response.ok) throw new Error(`Error fetching item details: ${response.status}`);
+  if (!response.ok) {
+    throw new Error(`Error fetching item details: ${response.status}`);
+  }
 
   let arr = await response.json();
 
@@ -16,7 +18,7 @@ export const renderShowsToDOM = async () => {
   const showList = document.querySelector('.maze__grid');
   showList.innerHTML = '';
 
-  let shows = await getShows();
+  const shows = await getShows();
 
   shows.forEach((show) => {
     const card = document.createElement('ul');
