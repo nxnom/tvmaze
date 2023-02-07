@@ -31,15 +31,15 @@ export const renderShowsToDOM = async () => {
   const likesArr = await renderLikesToDOM();
 
   shows.forEach((show) => {
-    let likeCount = '';
+    let likeText = 'likes';
+    let likeCount = `0 ${likeText}`;
+
     likesArr.forEach((obj) => {
+      if (obj.likes.toString() === '1') {
+        likeText = 'like';
+      }
+
       if (obj.item_id === show.id) {
-        let likeText = 'likes';
-
-        if (obj.likes == '1') {
-          likeText = 'like';
-        }
-
         likeCount = `${obj.likes} ${likeText}`;
       }
     });
