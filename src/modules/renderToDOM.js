@@ -15,7 +15,7 @@ export const renderShowsToDOM = async () => {
   const showList = document.querySelector('.maze__grid');
   showList.innerHTML = '';
 
-  const shows = await getShows();
+  let shows = await getShows();
 
   shows.forEach((show) => {
     const card = document.createElement('ul');
