@@ -23,7 +23,7 @@
     "webpack-dev-server": "^4.11.1"
   },
   "version": "1.0.0",
-  "description": "My webpack project",
+  "description": "TV Maze capstone project",
   "name": "my-webpack-project",
   "scripts": {
     "start": "webpack serve",
@@ -32,6 +32,7 @@
     "build": "webpack --mode=production --node-env=production",
     "build:dev": "webpack --mode=development",
     "build:prod": "webpack --mode=production --node-env=production",
-    "watch": "webpack --watch"
+    "watch": "webpack --watch",
+    "deploy": "npm run build && gh-pages -d dist"
   }
 }
