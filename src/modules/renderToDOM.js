@@ -18,8 +18,8 @@ export const renderLikesToDOM = async () => {
     const data = await response.json();
 
     return data;
-  } catch (err) {
-    throw new Error('Error fetching item likes');
+  } catch {
+    return [];
   }
 };
 
