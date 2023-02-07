@@ -9,6 +9,7 @@
 }
 
 body {
+  --color-red: rgb(237, 15, 15);
   --color-dark: rgb(14, 14, 14);
   --color-dark-grey: rgb(49, 45, 44);
   --color-text: rgb(71, 70, 69);
@@ -144,33 +145,43 @@ a {
 .maze__card {
   position: relative;
   max-width: 400px;
+  overflow: hidden;
 }
 
 .card__image {
   width: 100%;
+  transition: scale 200ms ease-in-out;
+}
+
+.maze__card:hover .card__image {
+  scale: 1.075;
 }
 
 .card__text {
   position: absolute;
-  top: 24rem;
-  left: 0;
-  bottom: 0;
+  inset: auto 0 0;
   width: 100%;
   padding-bottom: 4rem;
   flex-direction: column;
   justify-content: flex-end;
   gap: 0.75rem;
   background-color: rgba(0, 0, 0, 0.8);
-  transition: top 300ms ease-in-out;
-}
-
-.maze__card:hover .card__text {
-  top: 0;
 }
 
 .card__title {
   border-bottom: solid 2px var(--color-light-grey);
   padding-bottom: 0.5rem;
+  transition: color 200ms ease-in-out;
+}
+
+.card__counts {
+  font-size: 0.8em;
+  color: var(--color-light-grey);
+  padding: 0 1rem;
+}
+
+.maze__card:hover .card__title {
+  color: var(--color-red);
 }
 
 .card__btns {
@@ -178,7 +189,7 @@ a {
 }
 
 .card__btn {
-  padding: 0.5rem 1rem;
+  padding: 0.4rem 1rem;
   border-radius: 5rem;
   color: inherit;
   border: solid 2px currentColor;
