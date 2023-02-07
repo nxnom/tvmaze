@@ -5,7 +5,9 @@ export const getShows = async () => {
 
   if (!response.ok) throw new Error(`Error fetching item details: ${response.status}`);
 
-  const arr = await response.json();
+  let arr = await response.json();
+
+  arr = arr.slice(0, 30);
 
   return arr;
 };
@@ -15,8 +17,6 @@ export const renderShowsToDOM = async () => {
   showList.innerHTML = '';
 
   let shows = await getShows();
-
-  shows = shows.slice(0, 50);
 
   shows.forEach((show) => {
     const card = document.createElement('ul');

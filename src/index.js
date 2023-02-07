@@ -1,5 +1,13 @@
 import './index.css';
 import './popup.css';
-import { getShows, renderShowsToDOM } from './modules/renderToDOM.js';
+import { renderShowsToDOM } from './modules/renderToDOM.js';
 
-renderShowsToDOM(getShows);
+const showsContainer = document.querySelector('.maze__grid');
+
+showsContainer.addEventListener('click', (e) => {
+  if (e.target.closest('.comment__btn')) {
+    const id = e.target.closest('.comment__btn').closest('.maze__card').id;
+  }
+});
+
+renderShowsToDOM();
