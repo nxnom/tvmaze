@@ -1,0 +1,248 @@
+*,
+*::before,
+::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: 'Noto Sans', sans-serif;
+  font-weight: 400;
+}
+
+body {
+  --color-red: rgb(237, 15, 15);
+  --color-dark: rgb(14, 14, 14);
+  --color-dark-grey: rgb(49, 45, 44);
+  --color-text: rgb(71, 70, 69);
+  --color-light-grey: rgb(231, 228, 227);
+  --color-light: rgb(251, 248, 247);
+  --color-white: rgb(255, 255, 255);
+  --shadow: 0.25rem 0.25rem 1rem rgba(0, 0, 0, 0.15);
+
+  color: var(--color-light);
+  background-color: var(--color-dark);
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.container {
+  max-width: 80em;
+  margin: auto;
+}
+
+.padding {
+  padding: 1rem;
+}
+
+.padding-b {
+  padding-bottom: 1rem;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-jc-c {
+  justify-content: center;
+}
+
+.flex-jc-sb {
+  justify-content: space-between;
+}
+
+.flex-ai-c {
+  align-items: center;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+@keyframes animate {
+  from {
+    color: red;
+    rotate: 15deg;
+    font-weight: 900;
+  }
+
+  50% {
+    scale: 1.15;
+  }
+
+  to {
+    color: red;
+    rotate: -15deg;
+    font-weight: 900;
+  }
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.573);
+  backdrop-filter: blur(5px);
+  z-index: 1000;
+}
+
+.logo {
+  padding: 0.25rem 0.5rem;
+  border: solid 1px currentColor;
+  border-radius: 5rem;
+}
+
+.logo a {
+  display: inline-block;
+  height: 2rem;
+  width: 7.5rem;
+  background-image: url('../images/logo.png');
+  background-repeat: no-repeat;
+}
+
+.links {
+  gap: 2rem;
+}
+
+.link {
+  transition: opacity 150ms ease-in-out;
+}
+
+.link:hover {
+  opacity: 0.8;
+}
+
+.hero {
+  padding-top: 3rem;
+  position: relative;
+  height: 70vh;
+  background-image: url('../images/assortment-cinema-elements-red-background-with-copy-space.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(5deg, var(--color-dark), rgba(0, 0, 0, 0.425));
+}
+
+.hero .container {
+  position: relative;
+  flex-direction: column;
+  height: 100%;
+}
+
+.hero__title {
+  font-size: 4rem;
+  font-weight: 900;
+  margin-bottom: 1rem;
+}
+
+.hero__description {
+  max-width: 600px;
+}
+
+.maze {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+.maze__grid {
+  gap: 1rem;
+}
+
+.maze__card {
+  position: relative;
+  max-width: 400px;
+  overflow: hidden;
+  border: solid 2px transparent;
+  transition: border 150ms ease-in-out;
+}
+
+.maze__card:hover {
+  border: solid 2px rgba(237, 15, 15, 0.272);
+}
+
+.card__image {
+  width: 100%;
+  transition: scale 200ms ease-in-out;
+}
+
+.maze__card:hover .card__image {
+  scale: 1.075;
+}
+
+.card__text {
+  position: absolute;
+  inset: auto 0 0;
+  width: 100%;
+  padding-bottom: 4rem;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.card__title {
+  border-bottom: solid 2px var(--color-light-grey);
+  padding-bottom: 0.5rem;
+  transition: color 200ms ease-in-out;
+}
+
+.card__counts {
+  font-size: 0.8em;
+  color: var(--color-light-grey);
+  padding: 0 1rem;
+}
+
+.maze__card:hover .card__title {
+  color: var(--color-red);
+}
+
+.card__btns {
+  gap: 2rem;
+}
+
+.card__btn {
+  padding: 0.4rem 1rem;
+  border-radius: 5rem;
+  color: inherit;
+  border: solid 2px currentColor;
+  background-color: transparent;
+  cursor: pointer;
+  gap: 0.5rem;
+  transition: background-color 150ms ease-in-out, color 150ms ease-in-out;
+}
+
+.animate {
+  animation: animate 500ms ease-in-out 5 forwards;
+}
+
+.card__btn:hover {
+  background-color: rgba(251, 248, 247, 0.25);
+}
+
+.card__btn:active {
+  color: var(--color-dark);
+  background-color: var(--color-light);
+}
+
+.footer {
+  text-align: center;
+  border-top: solid 2px var(--color-dark-grey);
+}
+
+.copyright a:hover {
+  text-decoration: underline;
+}
