@@ -40,6 +40,20 @@ export const renderLikesToDOM = (likesArr, show) => {
   return likeCount;
 };
 
+export const sendLikeToAPI = async (showId) => {
+  try {
+    await fetch(`${INVOLVEMENT_API_URL}apps/${appID}/likes/`, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify({ item_id: showId }),
+    });
+  } catch (err) {
+    throw new Error(`Error, sending like: ${err}`);
+  }
+};
+
 export const renderShowsToDOM = async () => {
   const showList = document.querySelector('.maze__grid');
   showList.innerHTML = '';
