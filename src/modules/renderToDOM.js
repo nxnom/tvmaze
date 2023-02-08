@@ -1,4 +1,5 @@
-import { API_URL, appID, INVOLVEMENT_API_URL } from '../config.js';
+import { API_URL } from '../config.js';
+import { getLikes, sendLikeToAPI } from './likes.js';
 
 export const getShows = async () => {
   const response = await fetch(`${API_URL}`);
@@ -11,47 +12,21 @@ export const getShows = async () => {
   return arr;
 };
 
-export const getLikes = async () => {
-  try {
-    const response = await fetch(`${INVOLVEMENT_API_URL}apps/${appID}/likes/`);
-
-    const data = await response.json();
-
-    return data;
-  } catch {
-    return [];
-  }
-};
-
-export const renderLikesToDOM = (likesArr, show) => {
+export const renderLikesToDOM = (likesObj, showId) => {
   let likeText = 'likes';
   let likeCount = `0 ${likeText}`;
 
-  likesArr.forEach((obj) => {
-    if (obj.likes.toString() === '1') {
+  if (likesObj) {
+    if (likesObj.likes === 1) {
       likeText = 'like';
     }
 
-    if (obj.item_id === show.id) {
-      likeCount = `${obj.likes} ${likeText}`;
+    if (likesObj.item_id === showId) {
+      likeCount = `${likesObj.likes} ${likeText}`;
     }
-  });
+  }
 
   return likeCount;
-};
-
-export const sendLikeToAPI = async (showId) => {
-  try {
-    await fetch(`${INVOLVEMENT_API_URL}apps/${appID}/likes/`, {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify({ item_id: showId }),
-    });
-  } catch (err) {
-    throw new Error(`Error, sending like: ${err}`);
-  }
 };
 
 export const renderShowsToDOM = async () => {
@@ -62,6 +37,8 @@ export const renderShowsToDOM = async () => {
   const likesArr = await getLikes();
 
   shows.forEach((show) => {
+    const likesObj = likesArr.find((like) => like.item_id === show.id);
+
     const card = document.createElement('ul');
     card.className = 'maze__card';
     card.id = show.id;
@@ -73,7 +50,7 @@ export const renderShowsToDOM = async () => {
         <h2 class="card__title">${show.name}</h2>
 
         <div class="card__counts">
-          <span class="card__like-count">${renderLikesToDOM(likesArr, show)}</span>
+          <span class="card__like-count">${renderLikesToDOM(likesObj, show.id)}</span>
         </div>
 
         <div class="card__btns flex flex-ai-c">
