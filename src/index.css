@@ -46,12 +46,6 @@ a {
   padding-bottom: 1rem;
 }
 
-@media (min-width: 40em) {
-  .padding {
-    padding: 2rem;
-  }
-}
-
 .flex {
   display: flex;
 }
@@ -118,6 +112,14 @@ a {
   gap: 2rem;
 }
 
+.link {
+  transition: opacity 150ms ease-in-out;
+}
+
+.link:hover {
+  opacity: 0.8;
+}
+
 .hero {
   padding-top: 3rem;
   position: relative;
@@ -164,6 +166,12 @@ a {
   position: relative;
   max-width: 400px;
   overflow: hidden;
+  border: solid 2px transparent;
+  transition: border 150ms ease-in-out;
+}
+
+.maze__card:hover {
+  border: solid 2px rgba(237, 15, 15, 0.272);
 }
 
 .card__image {
@@ -233,4 +241,8 @@ a {
 .footer {
   text-align: center;
   border-top: solid 2px var(--color-dark-grey);
+}
+
+.copyright a:hover {
+  text-decoration: underline;
 }
