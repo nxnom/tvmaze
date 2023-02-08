@@ -37,7 +37,7 @@ export const renderShowsToDOM = async () => {
   const likesArr = await getLikes();
 
   shows.forEach((show) => {
-    const likesObj = likesArr.find((like) => like.item_id === show.id);
+    let likesObj = likesArr.find((like) => like.item_id === show.id);
 
     const card = document.createElement('ul');
     card.className = 'maze__card';
@@ -68,18 +68,25 @@ export const renderShowsToDOM = async () => {
 
     const likeBtn = card.querySelector('.like__btn');
     const likeCount = card.querySelector('.card__like-count');
+    const likeIcon = card.querySelector('.like__btn .material-symbols-outlined');
 
     likeBtn.addEventListener('click', async () => {
       const likeState = await sendLikeToAPI(show.id);
 
       if (likeState) {
         if (!likesObj) {
-          likesArr.push({ item_id: show.id, likes: 1 });
+          likesObj = { item_id: show.id, likes: 1 };
         } else {
           likesObj.likes += 1;
         }
 
         likeCount.innerHTML = renderLikesToDOM(likesObj, show.id);
+
+        likeIcon.classList.add('animate');
+
+        likeIcon.addEventListener('animationend', () => {
+          likeIcon.classList.remove('animate');
+        });
       }
     });
 
