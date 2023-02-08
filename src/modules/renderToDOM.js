@@ -1,5 +1,6 @@
 import { getLikes, sendLikeToAPI, getShows } from './api.js';
 import countShows from './countShows.js';
+import { createPopup } from './popup.js';
 
 export const renderShowsCount = async () => {
   const numberOfShows = document.querySelector('.shows__count');
@@ -12,7 +13,6 @@ export const renderShowsCount = async () => {
 
   numberOfShows.textContent = number;
 };
-import { createPopup } from './popup.js';
 
 export const renderLikesToDOM = (likesObj, showId) => {
   let likeText = 'likes';
