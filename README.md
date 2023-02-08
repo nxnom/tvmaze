@@ -2,7 +2,7 @@
 
 <div>
 
-  <h1><b>Leaderboard</b></h1><br/><br/>
+  <h1><b>TV Maze </b></h1><br/><br/>
 
 </div>
 
@@ -26,9 +26,9 @@
 - [🙏 Acknowledgements](#acknowledgements)
 - [📝 License](#license)
 
-# 📖 Leaderboard <a name="about-project"></a>
+# 📖 TV Maze <a name="about-project"></a>
 
-**Leaderboard** is a simple list app that displays a list of users and their game scores data which is manipulated by an API using JavaScript async and await.
+**TV Maze** is a web application based on an external API. The webapp has two user interfaces. A homepage and a comments popup modal.
 
 ## 🛠 Built With <a name="built-with"></a>
 
@@ -39,6 +39,7 @@
   <li><a href="https://html.com/html5/">HTML5</a></li>
   <li><a href="https://developer.mozilla.org/en-US/docs/Learn/CSS/First_steps/What_is_CSS">CSS</a></li>
   <li><a href="https://www.javascript.com/">JavaScript</a></li>
+  <li><a href="https://webpack.js.org">Webpack</a></li>
 </ul>
 
 ### Key Features <a name="key-features"></a>
@@ -51,11 +52,13 @@
 
 - **Gitflow**
 
+- **API**
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-- Visit the live demo [here](https://timbar09.github.io/Leaderboard/dist/)
+- Visit the live demo [here](https://oyhpnayiaw-as-micronaut.github.io/tvmaze/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -82,14 +85,14 @@ To clone this repository to your desired folder, follow the steps below:
 
 ```sh
   cd my-folder
-  git clone https://github.com/Timbar09/Leaderboard.git
+  git clone https://github.com/oyhpnayiaw-as-micronaut/tvmaze.git
 ```
 
 **Using GitHub Desktop app**
 
 - Follow the steps below
 
-  - Visit this link "https://github.com/Timbar09/Leaderboard.git"
+  - Visit this link "https://github.com/oyhpnayiaw-as-micronaut/tvmaze.git"
   - Click the green button labelled "code"
   - Select the "Open with GitHub Desktop" option
   - After the GitHub Desktop add opens, click the "clone repo" button
@@ -120,22 +123,20 @@ To run tests, run the following command:
 
 ### Deployment
 
-You can deploy this project by:
+You can deploy this project by running following command:
 
-- visiting your repository on [GitHub](https://github.com)
-- Click on settings
-- Go to the "Pages" option
-- Select the main branch and save
+```sh
+  npm run deploy
+```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## 👥 Author <a name="author"></a>
 
-| 👤 Author | GitHub | Twitter | LinkedIn |
-| :-- | :-- | :-- | :-- |
-| Miles Mosweu | [@Timbar09](https://github.com/Timbar09) | [@Milez09](https://twitter.com/Milez09) | [@miles09](https://www.linkedin.com/in/miles09) |
-
-|
+| 👤 Author    | GitHub                                       | Twitter                                       | LinkedIn                                              |
+| :----------- | :------------------------------------------- | :-------------------------------------------- | :---------------------------------------------------- |
+| Miles Mosweu | [@Timbar09](https://github.com/Timbar09)     | [@Milez09](https://twitter.com/Milez09)       | [@miles09](https://www.linkedin.com/in/miles09)       |
+| Wai Yan Phyo | [@oyhpnayiaw](https://github.com/oyhpnayiaw) | [@oyhpnayiaw](https://twitter.com/oyhpnayiaw) | [@oyhpnayiaw](https://www.linkedin.com/in/oyhpnayiaw) |
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -155,13 +156,13 @@ Feel free to check the [issues page](https://github.com/Timbar09/Leaderboard/iss
 
 ## ⭐️ Show your support <a name="support"></a>
 
-If you like this project, give it a ⭐️ and let me know what you like in particular.
+If you like this project, give it a ⭐️ and let us know what you like in particular.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## 🙏 Acknowledgments <a name="acknowledgements"></a>
 
-I would like to thank the whole Microverse community for their help and contributions towards this project.
+We would like to thank the whole Microverse community for their help and contributions towards this project.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
