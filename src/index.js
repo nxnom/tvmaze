@@ -1,6 +1,5 @@
 import './index.css';
-import './popup.css';
-import './loader.css';
+
 import { renderShowsToDOM } from './modules/renderToDOM.js';
 import { createPopup } from './modules/popup.js';
 

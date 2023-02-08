@@ -1,39 +1,13 @@
-import { API_URL, INVOLVEMENT_API_URL, appID } from '../config.js';
+import '../loader.css';
+import '../popup.css';
 
-const COMMENT_API_URL = `${INVOLVEMENT_API_URL}apps/${appID}/comments`;
-
-/**
- * Fetches item details from the API
- * @param {number} id - The id of the item to fetch
- * @returns {Promise<Object>} - The item details
- * @throws {Error} - If the response is not ok
- * */
-const fetchItemDetails = async (id) => {
-  const res = await fetch(`${API_URL}/${id}`);
-
-  if (!res.ok) throw new Error(`Error fetching item details: ${res.status}`);
-
-  const data = await res.json();
-  return data;
-};
-
-/**
- * Fetches item comments from the API
- * @param {number} id - The id of the item to fetch
- * */
-const fetchItemComments = async (id) => {
-  const res = await fetch(`${COMMENT_API_URL}?item_id=${id}`);
-
-  if (!res.ok) return [];
-
-  const data = await res.json();
-  return data;
-};
+import { fetchShowDetails, postComment } from './api.js';
 
 /**
  * Append circular loading indicator into the target element
  * @param {HTMLElement} popupEl - The popup element
  * @param {HTMLElement} [bodyEl=document.body] - The body element
+ * @private
  * */
 const openLoadingPopup = (popupEl, bodyEl = document.body) => {
   popupEl.remove();
@@ -49,8 +23,15 @@ const openLoadingPopup = (popupEl, bodyEl = document.body) => {
  * @param {Object} detail - The item details to render
  * @param {HTMLElement} popupEl - The popup element
  * @param {HTMLElement} [bodyEl=document.body] - The body element
+ * @param {Function} [onCommentFormSubmit] - The callback to call when the form is submitted,
+ *  it will be passed the item id, username and comment
  * */
-const openPopup = async (detail, popupEl, bodyEl = document.body) => {
+const openPopup = async (
+  detail,
+  popupEl,
+  onCommentFormSubmit,
+  bodyEl = document.body,
+) => {
   bodyEl.style.overflow = 'hidden';
 
   const comments = detail.comments ?? [];
@@ -72,13 +53,58 @@ const openPopup = async (detail, popupEl, bodyEl = document.body) => {
     <span>Language: ${detail.language}</span>
     <span>Genre: ${detail.genres[0]}</span>
     <section class="popup-comment-section">
-    <h3 class="comment-title">Comments (${comments.length})</h3>
+      <h3 class="popup-title">
+        Comments (<span id="comment-count"></span>)
+      </h3>
   ${comments
+    .reverse()
     .map((e) => `<p>${e.creation_date} ${e.username} : ${e.comment}</p>`)
     .join('')}
     </section>
+    <h3 class="popup-title">Add a comment</h3>
+    <form id="comment-form">
+      <input type="text" name="username" placeholder="Your name" required/>
+      <textarea name="comment" rows="4" placeholder="Your insights" required ></textarea>
+      <button class="comment-submit-btn" type="submit">Comment</button>
+    </form>
   </div>
   `;
+
+  const formEl = popupEl.querySelector('#comment-form');
+
+  const commentCountEl = popupEl.querySelector('#comment-count');
+  commentCountEl.textContent = comments.length;
+
+  // handle comment form submission
+  formEl.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const [username, comment, button] = e.target.elements;
+
+    if (!onCommentFormSubmit) return;
+
+    button.disabled = true;
+    button.innerHTML = 'Submitting...';
+
+    const data = await onCommentFormSubmit(
+      detail.id,
+      username.value,
+      comment.value,
+    );
+
+    const commentEl = document.createElement('p');
+    commentEl.innerHTML = `${data.creation_date} ${data.username} : ${data.comment}`;
+
+    // insert the comment after comment title to make latest comment showing on top
+    popupEl
+      .querySelector('.popup-comment-section .popup-title')
+      .insertAdjacentElement('afterend', commentEl);
+
+    commentCountEl.textContent = Number(commentCountEl.textContent) + 1;
+
+    button.disabled = false;
+    button.innerHTML = 'Comment';
+    e.target.reset();
+  });
 
   bodyEl.appendChild(popupEl);
 
@@ -88,21 +114,22 @@ const openPopup = async (detail, popupEl, bodyEl = document.body) => {
   });
 };
 
+// Create a popup element to be used for all popups
 const popupEl = document.createElement('div');
 
 /**
  * Fetches item details and opens the popup
  * @param {number} id - The id of the item to fetch
+ *
+ * Don't test this function, it's just a wrapper for the other functions
+ * this one has a lot of side effects and it's not easy to test
  * */
 const createPopup = async (id) => {
   openLoadingPopup(popupEl);
 
-  const comments = await fetchItemComments(id);
-  const itemDetails = await fetchItemDetails(id);
+  const details = await fetchShowDetails(id);
 
-  const details = Object.assign(itemDetails, { comments });
-
-  openPopup(details, popupEl);
+  openPopup(details, popupEl, postComment);
 };
 
-export { fetchItemDetails, openPopup, createPopup };
+export { openPopup, createPopup };
