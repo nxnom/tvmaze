@@ -14,7 +14,7 @@ const openLoadingPopup = (popupEl, bodyEl = document.body) => {
   popupEl.remove();
 
   popupEl.className = 'popup';
-  popupEl.innerHTML = '<div class="loader-1 center"><span></span></div>';
+  popupEl.innerHTML = '<div class="loader center"><span></span></div>';
 
   bodyEl.appendChild(popupEl);
 };
