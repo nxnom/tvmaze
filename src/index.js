@@ -1,6 +1,6 @@
 import './index.css';
 
-import { renderShowsToDOM } from './modules/renderToDOM.js';
+import { renderShowsToDOM, renderShowsCount } from './modules/renderToDOM.js';
 import { createPopup } from './modules/popup.js';
 
 const showsContainer = document.querySelector('.maze__grid');
@@ -14,4 +14,5 @@ showsContainer.addEventListener('click', async (e) => {
   }
 });
 
+renderShowsCount();
 renderShowsToDOM();

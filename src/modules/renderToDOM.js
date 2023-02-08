@@ -1,4 +1,17 @@
 import { getLikes, sendLikeToAPI, getShows } from './api.js';
+import countShows from './countShows.js';
+
+export const renderShowsCount = async () => {
+  const numberOfShows = document.querySelector('.shows__count');
+  const shows = await getShows();
+  let number = 0;
+
+  if (shows) {
+    number = countShows(shows);
+  }
+
+  numberOfShows.textContent = number;
+};
 
 export const renderLikesToDOM = (likesObj, showId) => {
   let likeText = 'likes';
