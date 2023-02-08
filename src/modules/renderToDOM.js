@@ -1,4 +1,5 @@
 import { getLikes, sendLikeToAPI, getShows } from './api.js';
+import { createPopup } from './popup.js';
 
 export const renderLikesToDOM = (likesObj, showId) => {
   let likeText = 'likes';
@@ -57,6 +58,7 @@ export const renderShowsToDOM = async () => {
     const likeBtn = card.querySelector('.like__btn');
     const likeCount = card.querySelector('.card__like-count');
     const likeIcon = card.querySelector('.like__btn .material-symbols-outlined');
+    const commentBtn = card.querySelector('.comment__btn');
 
     likeBtn.addEventListener('click', async () => {
       const likeState = await sendLikeToAPI(show.id);
@@ -76,6 +78,10 @@ export const renderShowsToDOM = async () => {
           likeIcon.classList.remove('animate');
         });
       }
+    });
+
+    commentBtn.addEventListener('click', () => {
+      createPopup(show.id);
     });
 
     showList.appendChild(card);
