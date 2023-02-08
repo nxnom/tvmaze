@@ -1,6 +1,4 @@
 // Generated using webpack-cli https://github.com/webpack/webpack-cli
-
-const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -19,10 +17,6 @@ const config = {
     new HtmlWebpackPlugin({
       template: './src/index.html',
     }),
-
-    // Add your plugins here
-    // Learn more about plugins from https://webpack.js.org/configuration/plugins/
-    new webpack.IgnorePlugin(/canvas/, /jsdom$/),
   ],
   module: {
     rules: [
