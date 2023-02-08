@@ -46,13 +46,13 @@ const openPopup = async (
   <div class="popup-inner">
     <btn class="popup-close-btn">x</btn>
     <img class="popup-img" 
-      src="${detail.image.original}" 
+      src="${detail.image?.original}" 
       alt="${detail.name}"/>
     <h2 class="popup-name">${detail.name}</h2>
-    <span>Rating: ${detail.rating.average}</span>
+    <span>Rating: ${detail.rating?.average}</span>
     <span>Status: ${detail.status}</span>
     <span>Language: ${detail.language}</span>
-    <span>Genre: ${detail.genres[0]}</span>
+    <span>Genre: ${detail.genres?.[0]}</span>
     <section class="popup-comment-section">
       <h3 class="popup-title">
         Comments (<span id="comment-count"></span>)
