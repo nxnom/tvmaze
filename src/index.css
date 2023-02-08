@@ -76,6 +76,7 @@ a {
   from {
     color: red;
     rotate: 15deg;
+    font-weight: 900;
   }
 
   50% {
@@ -85,6 +86,7 @@ a {
   to {
     color: red;
     rotate: -15deg;
+    font-weight: 900;
   }
 }
 

@@ -1,16 +1,4 @@
-import { API_URL } from '../config.js';
-import { getLikes, sendLikeToAPI } from './likes.js';
-
-export const getShows = async () => {
-  const response = await fetch(`${API_URL}`);
-
-  if (!response.ok) throw new Error(`Error fetching item data: ${response.status}`);
-
-  let arr = await response.json();
-  arr = arr.slice(0, 30);
-
-  return arr;
-};
+import { getLikes, sendLikeToAPI, getShows } from './api.js';
 
 export const renderLikesToDOM = (likesObj, showId) => {
   let likeText = 'likes';
