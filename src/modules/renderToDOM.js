@@ -3,11 +3,11 @@ import countShows from './countShows.js';
 
 export const renderShowsCount = async () => {
   const numberOfShows = document.querySelector('.shows__count');
-  const shows = await getShows();
+  const showsList = document.querySelector('.maze__grid');
   let number = 0;
 
-  if (shows) {
-    number = countShows(shows);
+  if (showsList) {
+    number = countShows(showsList);
   }
 
   numberOfShows.textContent = number;
@@ -41,7 +41,7 @@ export const renderShowsToDOM = async () => {
   shows.forEach((show) => {
     let likesObj = likesArr.find((like) => like.item_id === show.id);
 
-    const card = document.createElement('ul');
+    const card = document.createElement('li');
     card.className = 'maze__card';
     card.id = show.id;
 
@@ -99,4 +99,6 @@ export const renderShowsToDOM = async () => {
 
     showList.appendChild(card);
   });
+
+  renderShowsCount();
 };
