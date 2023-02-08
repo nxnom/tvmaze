@@ -1,26 +1,21 @@
-import { API_URL, appID, INVOLVEMENT_API_URL } from '../config.js';
+import { getLikes, sendLikeToAPI, getShows } from './api.js';
+import { createPopup } from './popup.js';
 
-export const getShows = async () => {
-  const response = await fetch(`${API_URL}`);
+export const renderLikesToDOM = (likesObj, showId) => {
+  let likeText = 'likes';
+  let likeCount = `0 ${likeText}`;
 
-  if (!response.ok) throw new Error(`Error fetching item data: ${response.status}`);
+  if (likesObj) {
+    if (likesObj.likes === 1) {
+      likeText = 'like';
+    }
 
-  let arr = await response.json();
-  arr = arr.slice(0, 30);
-
-  return arr;
-};
-
-export const renderLikesToDOM = async () => {
-  try {
-    const response = await fetch(`${INVOLVEMENT_API_URL}apps/${appID}/likes/`);
-
-    const data = await response.json();
-
-    return data;
-  } catch {
-    return [];
+    if (likesObj.item_id === showId) {
+      likeCount = `${likesObj.likes} ${likeText}`;
+    }
   }
+
+  return likeCount;
 };
 
 export const renderShowsToDOM = async () => {
@@ -28,21 +23,10 @@ export const renderShowsToDOM = async () => {
   showList.innerHTML = '';
 
   const shows = await getShows();
-  const likesArr = await renderLikesToDOM();
+  const likesArr = await getLikes();
 
   shows.forEach((show) => {
-    let likeText = 'likes';
-    let likeCount = `0 ${likeText}`;
-
-    likesArr.forEach((obj) => {
-      if (obj.likes.toString() === '1') {
-        likeText = 'like';
-      }
-
-      if (obj.item_id === show.id) {
-        likeCount = `${obj.likes} ${likeText}`;
-      }
-    });
+    let likesObj = likesArr.find((like) => like.item_id === show.id);
 
     const card = document.createElement('ul');
     card.className = 'maze__card';
@@ -55,7 +39,7 @@ export const renderShowsToDOM = async () => {
         <h2 class="card__title">${show.name}</h2>
 
         <div class="card__counts">
-          <span class="card__like-count">${likeCount}</span>
+          <span class="card__like-count">${renderLikesToDOM(likesObj, show.id)}</span>
         </div>
 
         <div class="card__btns flex flex-ai-c">
@@ -70,6 +54,35 @@ export const renderShowsToDOM = async () => {
         </div>
       </div>
     `;
+
+    const likeBtn = card.querySelector('.like__btn');
+    const likeCount = card.querySelector('.card__like-count');
+    const likeIcon = card.querySelector('.like__btn .material-symbols-outlined');
+    const commentBtn = card.querySelector('.comment__btn');
+
+    likeBtn.addEventListener('click', async () => {
+      const likeState = await sendLikeToAPI(show.id);
+
+      if (likeState) {
+        if (!likesObj) {
+          likesObj = { item_id: show.id, likes: 1 };
+        } else {
+          likesObj.likes += 1;
+        }
+
+        likeCount.innerHTML = renderLikesToDOM(likesObj, show.id);
+
+        likeIcon.classList.add('animate');
+
+        likeIcon.addEventListener('animationend', () => {
+          likeIcon.classList.remove('animate');
+        });
+      }
+    });
+
+    commentBtn.addEventListener('click', () => {
+      createPopup(show.id);
+    });
 
     showList.appendChild(card);
   });

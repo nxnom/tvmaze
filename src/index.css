@@ -72,6 +72,24 @@ a {
   flex-wrap: wrap;
 }
 
+@keyframes animate {
+  from {
+    color: red;
+    rotate: 15deg;
+    font-weight: 900;
+  }
+
+  50% {
+    scale: 1.15;
+  }
+
+  to {
+    color: red;
+    rotate: -15deg;
+    font-weight: 900;
+  }
+}
+
 .header {
   position: fixed;
   top: 0;
@@ -197,6 +215,10 @@ a {
   cursor: pointer;
   gap: 0.5rem;
   transition: background-color 150ms ease-in-out, color 150ms ease-in-out;
+}
+
+.animate {
+  animation: animate 500ms ease-in-out 5 forwards;
 }
 
 .card__btn:hover {
