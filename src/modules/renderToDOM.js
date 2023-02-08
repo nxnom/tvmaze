@@ -1,5 +1,18 @@
 import { getLikes, sendLikeToAPI, getShows } from './api.js';
+import countShows from './countShows.js';
 import { createPopup } from './popup.js';
+
+export const renderShowsCount = async () => {
+  const numberOfShows = document.querySelector('.shows__count');
+  const showsList = document.querySelector('.maze__grid');
+  let number = 0;
+
+  if (showsList) {
+    number = countShows(showsList);
+  }
+
+  numberOfShows.textContent = number;
+};
 
 export const renderLikesToDOM = (likesObj, showId) => {
   let likeText = 'likes';
@@ -28,7 +41,7 @@ export const renderShowsToDOM = async () => {
   shows.forEach((show) => {
     let likesObj = likesArr.find((like) => like.item_id === show.id);
 
-    const card = document.createElement('ul');
+    const card = document.createElement('li');
     card.className = 'maze__card';
     card.id = show.id;
 
@@ -86,4 +99,6 @@ export const renderShowsToDOM = async () => {
 
     showList.appendChild(card);
   });
+
+  renderShowsCount();
 };
