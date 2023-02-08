@@ -66,6 +66,23 @@ export const renderShowsToDOM = async () => {
       </div>
     `;
 
+    const likeBtn = card.querySelector('.like__btn');
+    const likeCount = card.querySelector('.card__like-count');
+
+    likeBtn.addEventListener('click', async () => {
+      const likeState = await sendLikeToAPI(show.id);
+
+      if (likeState) {
+        if (!likesObj) {
+          likesArr.push({ item_id: show.id, likes: 1 });
+        } else {
+          likesObj.likes += 1;
+        }
+
+        likeCount.innerHTML = renderLikesToDOM(likesObj, show.id);
+      }
+    });
+
     showList.appendChild(card);
   });
 };
