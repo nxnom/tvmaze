@@ -2,6 +2,7 @@
   "devDependencies": {
     "@babel/core": "^7.20.12",
     "@babel/preset-env": "^7.20.2",
+    "@jest/globals": "^29.4.2",
     "@webpack-cli/generators": "^3.0.1",
     "babel-eslint": "10.x",
     "babel-loader": "^9.1.2",
