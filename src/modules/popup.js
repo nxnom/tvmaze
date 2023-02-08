@@ -2,6 +2,7 @@ import '../loader.css';
 import '../popup.css';
 
 import { fetchShowDetails, postComment } from './api.js';
+import countComment from './countComment.js';
 
 /**
  * Append circular loading indicator into the target element
@@ -13,7 +14,7 @@ const openLoadingPopup = (popupEl, bodyEl = document.body) => {
   popupEl.remove();
 
   popupEl.className = 'popup';
-  popupEl.innerHTML = '<div class="loader-1 center"><span></span></div>';
+  popupEl.innerHTML = '<div class="loader center"><span></span></div>';
 
   bodyEl.appendChild(popupEl);
 };
@@ -45,20 +46,24 @@ const openPopup = async (
   <div class="popup-inner">
     <btn class="popup-close-btn">x</btn>
     <img class="popup-img" 
-      src="${detail.image.original}" 
+      src="${detail.image?.original}" 
       alt="${detail.name}"/>
     <h2 class="popup-name">${detail.name}</h2>
-    <span>Rating: ${detail.rating.average}</span>
+    <span>Rating: ${detail.rating?.average}</span>
     <span>Status: ${detail.status}</span>
     <span>Language: ${detail.language}</span>
-    <span>Genre: ${detail.genres[0]}</span>
+    <span>Genre: ${detail.genres?.[0]}</span>
     <section class="popup-comment-section">
       <h3 class="popup-title">
         Comments (<span id="comment-count"></span>)
       </h3>
   ${comments
     .reverse()
-    .map((e) => `<p>${e.creation_date} ${e.username} : ${e.comment}</p>`)
+    .map(
+      (e) => `<p class="comment">
+                ${e.creation_date} ${e.username} : ${e.comment}
+              </p>`,
+    )
     .join('')}
     </section>
     <h3 class="popup-title">Add a comment</h3>
@@ -73,7 +78,7 @@ const openPopup = async (
   const formEl = popupEl.querySelector('#comment-form');
 
   const commentCountEl = popupEl.querySelector('#comment-count');
-  commentCountEl.textContent = comments.length;
+  commentCountEl.textContent = countComment(popupEl);
 
   // handle comment form submission
   formEl.addEventListener('submit', async (e) => {
@@ -92,14 +97,15 @@ const openPopup = async (
     );
 
     const commentEl = document.createElement('p');
+    commentEl.className = 'comment';
     commentEl.innerHTML = `${data.creation_date} ${data.username} : ${data.comment}`;
 
-    // insert the comment after comment title to make latest comment showing on top
+    // insert the comment after title to make latest comment showing on top
     popupEl
       .querySelector('.popup-comment-section .popup-title')
       .insertAdjacentElement('afterend', commentEl);
 
-    commentCountEl.textContent = Number(commentCountEl.textContent) + 1;
+    commentCountEl.textContent = countComment(popupEl);
 
     button.disabled = false;
     button.innerHTML = 'Comment';
